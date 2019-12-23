@@ -1,7 +1,7 @@
 package com.softtehnica.freya.models
 
 data class PayloadUsers (
-    var payload: PayloadUserFindManyUnsynced,
+    val payload: PayloadUserFindManyUnsynced,
     val status: Int,
     val message: String,
     val isSuccess: Boolean,
@@ -20,3 +20,4 @@ data class RecordThatCanBeDeleted(
 data class RecordsUser(
     val records: List<User>
 )
+

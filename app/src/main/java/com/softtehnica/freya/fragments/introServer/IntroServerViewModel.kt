@@ -8,7 +8,10 @@ import androidx.lifecycle.MutableLiveData
 import com.softtehnica.freya.apiManager.ApiManager
 import com.softtehnica.freya.apiManager.FreyaApiStatus
 import com.softtehnica.freya.configs.ServerConnection
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.HttpException
@@ -53,31 +56,34 @@ class IntroServerViewModel(app: Application) : AndroidViewModel(app) {
 //        )
     }
 
-    fun resetServerConnection(){
+    fun resetServerConnection() {
         serverConnection.apiKey = ""
     }
+
     fun setKeyboardOpenFlag(isOpen: Boolean) {
         _keyboardIsOpen.value = isOpen
     }
 
     fun checkOwnerCredentials() {
         ioScope.launch {
-            val userDeferred = ApiManager.RETROFIT.getOwnerDetails(
+            val ownerDeferred = ApiManager.RETROFIT.getOwnerDetails(
                 serverConnection.ownerGetDetails,
                 serverConnection.apiKey
             )
             try {
                 _status.postValue(FreyaApiStatus.LOADING)
-                val payloadUsers = userDeferred.await()
-                if (payloadUsers.isSuccess)
+                val payloadOwner = ownerDeferred.await()
+                if (payloadOwner.isSuccess) {
+                    Log.i("ERR", "${payloadOwner.payload}")
                     _status.postValue(FreyaApiStatus.DONE)
+                }
                 else {
                     _status.postValue(FreyaApiStatus.ERROR)
-                    _error.postValue(payloadUsers.errorMessage.plus(" 1"))
+                    _error.postValue(payloadOwner.errorMessage)
                 }
-            }
-            catch (e: Exception) {
-                if(e is HttpException){
+            } catch (e: Exception) {
+                if (e is HttpException) {
+                    _status.postValue(FreyaApiStatus.ERROR)
                     try {
                         val errorBody = JSONObject(e.response().errorBody()?.string())
                         _error.postValue(errorBody.getString("ErrorMessage"))
@@ -85,10 +91,12 @@ class IntroServerViewModel(app: Application) : AndroidViewModel(app) {
                         _error.postValue(e.message)
                     }
                 }
-                _status.postValue(FreyaApiStatus.ERROR)
+
             }
         }
     }
+
+
 
     override fun onCleared() {
         super.onCleared()

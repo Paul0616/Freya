@@ -13,6 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 import com.softtehnica.freya.models.Owner
+import com.softtehnica.freya.models.PayloadOwner
 import com.softtehnica.freya.models.PayloadUsers
 
 enum class FreyaApiStatus { LOADING, ERROR, DONE }
@@ -28,7 +29,7 @@ private val retrofit = Retrofit.Builder()
 
 interface ApiService {
     @GET
-    fun getOwnerDetails(@Url url:String, @Header("ApiKey") apiKey: String): Deferred<ApiResponseModel>
+    fun getOwnerDetails(@Url url:String, @Header("ApiKey") apiKey: String): Deferred<PayloadOwner>
 
     @GET
     fun getOwnerUsers(@Url url:String, @Header("ApiKey") apiKey: String, @QueryMap options: HashMap<String, Any>): Deferred<PayloadUsers>

@@ -1,12 +1,20 @@
 package com.softtehnica.freya.models
 
+data class PayloadOwner(
+    val payload: Owner,
+    val status: Int,
+    val message: String,
+    val isSuccess: Boolean,
+    val errorMessage: String
+)
+
 data class Owner(
     val uid: String,
     val name: String,
     val alias: String,
-    val logo1: String,
-    val logo2: String,
-    val modifiedAt: String
+    val logo1: String? = null,
+    val logo2: String? = null,
+    val modifiedAt: String?
 )
 
 //files": [],
