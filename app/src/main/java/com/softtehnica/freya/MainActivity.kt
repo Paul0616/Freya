@@ -40,8 +40,8 @@ class MainActivity : AppCompatActivity(){ //, ConnectivityReceiver.ConnectivityR
                 showNetworkMessage(it)
             }
         })
-        val navController = this.findNavController(R.id.nav_host)
-        NavigationUI.setupActionBarWithNavController(this, navController)
+//        val navController = this.findNavController(R.id.nav_host)
+//        NavigationUI.setupActionBarWithNavController(this, navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {
