@@ -3,4 +3,23 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="black_overlay">#66000000</color>
+
+    //freya colors
+    <color name="freyaDarkBlue">#303160</color>
+    <color name="freyaMediumBlue">#3D3E78</color>
+    <color name="freyaGreen">#18DC47</color>
+    <color name="freyaLighterGray">#F7F9FA</color>
+    <color name="freyaLightGray">#E2E2E2</color>
+    <color name="freyaGray">#D8D8D8</color>
+    <color name="freyaDarkGray">#323232</color>
+
+    <color name="freyaProductForegroundDefault">#4B4B4B</color>
+    <color name="freyaProductBackgroundDefault">#D8D8D8</color>
+    <color name="freyaLightBlueBackground">#F7F9FA</color>
+
+    <color name="freyaAlmostTransparent">#10000000</color>
+    <color name="colorEnabled">#18DC47</color>
+    <color name="colorDisabled">#3318DC47</color>
 </resources>

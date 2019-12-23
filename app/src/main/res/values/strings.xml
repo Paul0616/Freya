@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Freya</string>
+    <string name="server_connection_label">Conexiune server</string>
+    <string name="demo_mode_label">Mod demo</string>
+    <string name="continue_text_button">Continuare</string>
+    <string name="error">Eroare</string>
 </resources>
